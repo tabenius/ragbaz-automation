@@ -33,14 +33,15 @@ if [[ ! -f "$skill" ]]; then
 fi
 prompt="$(sed "s#skills/weekly-review/SKILL.md#$skill#" "$here/prompt.txt")"
 
-# Ordered by report quality and availability. Codex is remote and billed; the
-# rest are OpenCode models on the local subscription, so an exhausted or
-# unreachable Codex account still produces a report.
+# Ordered by report quality, then by tier. The hosted models need the network
+# and are preferred. The local model is the backstop: Ollama is loopback-only,
+# so it answers during an outage when nothing hosted can be reached.
 models=(
   "codex"
   "opencode/big-pickle"
   "opencode/nemotron-3.5-lightning-free"
   "opencode/space-bunny-free"
+  "ollama/qwen2.5:3b"
 )
 
 # Bound each attempt so an unresponsive service cannot hold the unit open until
