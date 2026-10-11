@@ -1,0 +1,10 @@
+[Unit]
+Description=RAGBAZ weekly project report and social draft
+
+[Service]
+Type=oneshot
+# Rewritten by install.sh for this checkout. The paths must be absolute because
+# systemd does not expand shell variables and does not read this file's context.
+WorkingDirectory=@WORKSPACE@
+ExecStart=/bin/bash @WORKSPACE@/automation/weekly-review/run.sh
+TimeoutStartSec=2h

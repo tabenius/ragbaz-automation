@@ -1,0 +1,11 @@
+[Unit]
+Description=Monday 09:00 Stockholm project review
+
+[Timer]
+OnCalendar=Mon *-*-* 09:00:00 Europe/Stockholm
+Persistent=true
+AccuracySec=1min
+Unit=ragbaz-weekly-review.service
+
+[Install]
+WantedBy=timers.target
